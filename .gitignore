@@ -1,0 +1,40 @@
+# Archivos auxiliares de LaTeX / pdfLaTeX
+*.aux
+*.bbl
+*.blg
+*.brf
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+*.nav
+*.snm
+*.vrb
+*.xdv
+
+# Archivos temporales o backups
+*.bak
+*.backup
+*~
+*.swp
+*.tmp
+
+# Archivos generados por editores
+*.texpadtmp
+*.lyx~
+*.gz(busy)
+
+# Archivos compilados
+#*.pdf
+*.dvi
+*.ps
+*.eps
+
+# Carpetas temporales comunes
+latex.out/
+build/

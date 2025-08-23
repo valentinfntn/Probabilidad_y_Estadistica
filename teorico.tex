@@ -1,0 +1,40 @@
+\pdfminorversion=4
+\documentclass[]{article}
+
+% Packages/Macros %
+\usepackage{amssymb,latexsym,amsmath}     % Standard packages
+\usepackage{hyperref,comment,enumitem}
+
+% Margins %
+\addtolength{\textwidth}{1.0in}
+\addtolength{\textheight}{1.00in}
+\addtolength{\evensidemargin}{-0.75in}
+\addtolength{\oddsidemargin}{-0.75in}
+\addtolength{\topmargin}{-.50in}
+
+\newtheorem{theorem}{Teorema}
+\newtheorem{proposition}{Proposicion}[theorem]
+\newtheorem{definition}{Definicion}
+\newenvironment{proof}{\noindent{\bf Prueba:}}{$\hfill \Box$ \vspace{10pt}}  
+
+\newcommand{\iSection}[1]{
+  \phantomsection
+  \addcontentsline{toc}{section}{#1}
+}
+
+
+\begin{document}
+
+\newcommand{\ida}{\Longrightarrow}
+\newcommand{\vuelta}{\Longleftarrow}
+\newcommand{\cn}[1]{\text{$\mathbb{#1}$}}
+\newcommand{\mtx}[2]{\text{$\mathbb{K}^{#1 \times #2}$}}
+\newcommand{\incluye}[2]{\text{$#1 \subseteq #2$}}
+\newcommand{\conjunto}[1]{\text{$\{ {#1} \}$}}
+\newcommand{\tq}{\text{ $|$ }}
+\newcommand{\novacio}{\text{$\neq\emptyset$}\:}
+
+\title{Teorico Probabilidad y Estadistica}
+\maketitle
+
+\end{document}
