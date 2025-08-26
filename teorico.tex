@@ -122,6 +122,58 @@
   \end{enumerate}
 \end{concept}
 
+\iSubSection{Variable Aleatoria}
+\begin{definition}[Variable Aleatoria]
+  Una Variable Aleatoria X es una funcion $X:\Omega \to \mathbb{R}$, que a cada elemento del espacio muestral $(\Omega,\fp)$
+  le hace corresponder un numero real.
+\end{definition}
+
+\begin{concept}{Rango de la Variable Aleatoria}
+  es el conjunto de valores que tienen asociado algun elemento del espacio muestral:
+  \begin{align*}
+    \Omega_X = \conjunto{x \in \mathbb{R} : \exists s \in \Omega, X(s)=x}
+  \end{align*} 
+\end{concept}
+
+\iSubSection{Funcion de Masa}
+\begin{definition}[Funcion de Masa Discreta]
+  Es la funcion que representa la probabilidad de que X tome cada uno de los valores posibles $x_i$ :
+  \begin{align*}
+    &p : \mathbb{R} \to [0,1]\\
+    &x_i \to p(x_i) = P(X=x_i) = \fp(s \in \Omega : X(s)=x_i)
+  \end{align*} 
+\end{definition}
+
+\begin{concept}{Propiedades de la Funcion de Masa}
+  \begin{enumerate}
+    \item $0\leq p(x) \leq 1$ , $\forall x \in \mathbb{R}$
+    \item $\sum_{i \in I} p(x_i)= 1$
+    \item Si $A \subset \mathbb{R}$ , $P(X \in A) = \sum_{x_i \in A} p(x_i)$
+  \end{enumerate}
+\end{concept}
+
+\iSubSection{Funcion de Distribucion}
+\begin{concept}{Funcion de Distribucion}
+  \begin{align*}
+    F(x)=P(-\infty,x]= P(s \in \Omega : X(s)\leq x) , \forall x \in \mathbb{R}    
+  \end{align*}
+Se deducen las siguientes propiedades:
+  \begin{enumerate}
+    \item $\lim_{x \to -\infty} F(x)=0$
+    \item $\lim_{x \to \infty} F(x)=1$
+    \item Si $x_1 \leq x_2 \ida F(x_1)\leq F(x_2)$
+    \item $F(x^+)=\lim_{h \to 0^+} F(x + h) = F(x)$
+    \item $P(a,b]=F(a)-F(b)$
+  \end{enumerate}
+\end{concept}
+
+\begin{definition}[Funcion de Distribucion Discreta]
+  \begin{align*}
+    F(x)= \sum_{x_i < x} P(X = x_i) = \sum_{x_i < x} p(x_i)
+  \end{align*}
+\end{definition}
+
+\newpage
 \iSection{Probabilidad Condicional}
 
 \iSubSection{Independencia}
@@ -166,4 +218,14 @@
   \end{align*}
 \end{definition}
 
+\iSection{Esperanza}
+\begin{definition}[Esperanza Matematica]
+  Denotamos esperanza matematica (o media) a la tendencia central mas importante:
+  \begin{align*}
+    &E[X]= \sum_{i=1}^{n} x_i p(x_i)
+  \end{align*}
+\end{definition}
+
 \end{document}
+
+
