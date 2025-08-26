@@ -15,15 +15,17 @@
 \newtheorem{theorem}{Teorema}
 \newtheorem{proposition}{Proposicion}[theorem]
 \newtheorem{definition}{Definicion}
-\newenvironment{proof}{\noindent{\bf Prueba:}}{$\hfill \Box$ \vspace{10pt}}  
+\newenvironment{proof}{\noindent{\bf Prueba:}}{$\hfill \Box$ \vspace{10pt}}
+\newenvironment{concept}[1]{\par\noindent\underline{\textbf{#1:}}}{\par\vspace{0.5em}}
 
 \newcommand{\iSection}[1]{
   \phantomsection
   \addcontentsline{toc}{section}{#1}
 }
-
-
-\begin{document}
+\newcommand{\iSubSection}[1]{
+  \phantomsection
+  \addcontentsline{toc}{subsection}{#1}
+}
 
 \newcommand{\ida}{\Longrightarrow}
 \newcommand{\vuelta}{\Longleftarrow}
@@ -33,8 +35,135 @@
 \newcommand{\conjunto}[1]{\text{$\{ {#1} \}$}}
 \newcommand{\tq}{\text{ $|$ }}
 \newcommand{\novacio}{\text{$\neq\emptyset$}\:}
+\newcommand{\om}{\text{$\Omega$\:}}
+\newcommand{\com}[1]{{#1}^{\mathsf{c}}}
+\newcommand{\fp}{\mathcal{P}}
+
+\renewcommand{\contentsname}{Índice}
+
+\begin{document}
 
 \title{Teorico Probabilidad y Estadistica}
 \maketitle
+
+\tableofcontents
+\newpage
+
+\iSection{Introduccion}
+\iSubSection{Conceptos Preliminares}
+
+\begin{concept}{Poblacion}
+  el conjunto \textbf{(Total)} sobre el que estamos interesados en obtener conclusiones.
+\end{concept}
+
+\begin{concept}{Muestra}
+  es un subconjunto de la poblacion al que tenemos acceso y sobre el que realmente hacemos las observaciones.
+  Nos interesa principalmente cuando es una \textbf{Muestra Aleatoria Simple}, puede ser \textbf{Con Reemplazo} o \textbf{Sin Reemplazo}.
+\end{concept}
+
+\begin{concept}{Experimento Aleatorio}
+  conocemos de antemano todos los posibles resultados que se pueden obtener, pueden repetirse indefinidamente en las mismas condiciones.
+\end{concept}
+
+\begin{concept}{Espacio Muestral \om}
+  el conjunto de todos los posibles resultados distintos de dicho experimento.
+\end{concept}
+
+\begin{concept}{Eventos Elementales}
+  eventos (subconjunto del espacio muestral) formados por un unico resultado, $A=\conjunto{s}$
+\end{concept}
+
+\begin{concept}{Operaciones entre eventos}
+  \begin{itemize}
+    \item \textbf{Union: } $A\cup B = \conjunto{s \in \om : s \in A \vee s \in B}$
+    \item \textbf{Interseccion: } $A\cap B= \conjunto{s \in \om : s \in A \wedge s \in B}$
+    \item \textbf{Diferencia: } $A-B=\conjunto{s \in \om : s \in A \wedge s \notin B}$
+    \item \textbf{Complemento: } $\com{A} = \conjunto{s \in \om : s \notin A}$
+  \end{itemize}
+\end{concept}
+
+\newpage
+\iSection{Probabilidad}
+\iSubSection{Funcion de Probabilidad}
+
+\begin{definition}[Funcion de probabilidad]
+  Es una funcion $\mathcal{P}$ que verifica los siguientes axiomas:
+  \begin{enumerate}
+    \item $\mathcal{P} : \mathbb{P}(\Omega) \to [0,1]$ , $\forall A \subset \Omega \quad 0\leq\mathcal{P}(A)\leq1$
+    \item $\mathcal{P}(\Omega)=1$
+    \item Si $A_i,A_j$ son eventos disjuntos $(A_i \cap A_j = \emptyset) \ida \mathcal{P}(A_i \cup A_j)= \mathcal{P}(A_i)+\mathcal{P}(A_j)$ 
+  \end{enumerate} 
+\end{definition}
+
+\begin{concept}{Espacio Equiprobable}
+  \begin{itemize}
+    \item \om tiene n posibles resultados diferentes
+    \item los n resultados tienen la misma probabilidad de aparecer $\frac{1}{n}$
+  \end{itemize}
+\end{concept}
+
+\iSubSection{Regla de Laplace}
+\begin{definition}[Regla de Laplace]
+  Si \om es un espacio equiprobable.
+  La probabilidad de un evento formado por k eventos elementales $A=\conjunto{a_1,\cdots,a_k}$ es:
+  \begin{align*}
+    P(A) = \sum_{i=1}^{k} \mathcal{P}(a_i) = \sum_{i=n}^{k} \frac{1}{n}
+    = \frac{k}{n} = \frac{\#(A)}{\#(\Omega)} = \frac{\text{casos favorables}}{\text{casos posibles}}
+  \end{align*}
+\end{definition}
+
+\begin{concept}{Propiedades de la Funcion de Probabilidad}
+  \begin{enumerate}
+    \item $\fp (\emptyset)=0$
+    \item $\fp (\com{A})=1 - \fp(A)$
+    \item Si $A \subset B$ entonces $\fp(A)\leq\fp(B)$
+    \item $\fp(A\cup B)= \fp(A)+\fp(B)+\fp(A\cap B)$
+    \item $\fp(\bigcup^{n}_{i=n}A_i)=\sum_{i=1}^{n}\fp(A_i)-\sum_{i<j}\fp(A_i)+\cdots+(-1)^{n+1}\fp(\bigcap^{n}_{i=1}A_i)$
+  \end{enumerate}
+\end{concept}
+
+\iSection{Probabilidad Condicional}
+
+\iSubSection{Independencia}
+\begin{definition}[Independencia]
+  Diremos que A y B son independientes sii:
+  \begin{align*}
+    \fp(A \cap B) =  \fp(A)\cdot \fp(B)
+  \end{align*}
+\end{definition}
+
+\iSubSection{Evento Condicionado}
+\begin{definition}[Evento Condcionado]
+  Si la probabilidad de un evento A esta condicionada por un evento B se da que:
+  \begin{align*}
+    \fp(A | B)=\frac{\fp(A\cap B)}{\fp(B)}
+  \end{align*} 
+\end{definition}
+
+\begin{concept}{Particion sobre \om}
+  \begin{enumerate}
+    \item Eventos exhaustivos: $\Omega = \bigcup^{r}_{i=1}B_i$
+    \item Eventos excluyentes: $B_i \cap B_j = \emptyset$ para todo $i \neq j$
+  \end{enumerate}
+\end{concept}
+
+\iSubSection{Regla de Probabilidad Total}
+\begin{definition}[Regla de Probabilidad Total]
+  A partir de una particion podemos calcular A como la union de todas las intersecciones con los eventos B.
+  \begin{align*}
+    &\text{Sea } A = (A\cap B_1) \cup\cdots\cup (A\cap B_r)\\
+    &\fp(A)= \fp(A\cap B_1) + \cdots + \fp(A\cap B_r)\\
+    &\fp(A)= \fp(A | B_1) \cdot \fp(B_1) + \cdots + \fp(A | B_r) \cdot \fp(B_r)\\
+    &\ida \quad \fp(A)= \sum_{i=1}^{r} \fp(A | B_i) \cdot \fp(B_i)
+  \end{align*}
+\end{definition}
+
+\iSubSection{Regla de Bayes}
+\begin{definition}[Regla de Bayes]
+  Del mismo modo a partir de una particion de espacio muestral se deduce que:
+  \begin{align*}
+    &\fp(B_j | A)= \frac{\fp(B_j \cap A)}{\fp(A)} = \frac{\fp(B_j \cap A)}{\sum_{i=1}^{r} \fp(A | B_i)\cdot \fp(B_i)}
+  \end{align*}
+\end{definition}
 
 \end{document}
