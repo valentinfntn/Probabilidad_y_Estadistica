@@ -226,6 +226,193 @@ Se deducen las siguientes propiedades:
   \end{align*}
 \end{definition}
 
+\begin{concept}{Propiedades}
+  Sean $X,Y$ variables aleatorias y sean $a,b,c \in \mathbb{R}$ constantes entonces:
+  \begin{itemize}
+    \item $E[aX+b] = aE[X]+b$
+    \item $E[X+Y] = E[X] + E[Y]$
+    \item $E[c] = c$
+    \item $E[cX] = cE[X]$
+    \item Si $X \geq 0$ entonces $E[X] \geq 0$
+    \item Si $X \leq Y$ entonces $E[X] \leq E[Y]$
+  \end{itemize}
+\end{concept}
+
+\iSection{Varianza}
+\begin{definition}[Varianza]
+  Representa la distancia cuadratica promedio a la media, se denota
+  $V(X) = E[(X-\mu_x)^2] = E[X^2]-E[X]^2$. Tambien denota a la raiz cuadrada  de la desviacion tipica ($\sigma_X$),
+  por lo tanto $V(X)=\sigma^{2}_X$.
+\end{definition}
+
+\iSection{Distribuciones Discretas}
+
+\iSubSection{Uniforme Discreta}
+\begin{definition}[Uniforme: $X \equiv Unif\conjunto{x_1,\cdots,x_n}$]
+  Una variable X tiene distribucion\\ uniforme discreta sobre el conjunto
+  \conjunto{x_1,\cdots,x_n} si la probabilidad de que tome cualquiera de los valores es la misma.
+  \begin{itemize}
+    \item \underline{Funcion de masa:}
+    \begin{align*}
+      P(X = x_i) =
+      \begin{cases}
+        \frac{1}{n} \text{ si } i \in \conjunto{x_1,\cdots,x_n}\\
+        0 \text{ en caso contrario}
+      \end{cases}
+    \end{align*}
+    \item \underline{Esperanza:}
+    \begin{align*}
+      E[X] = \frac{1}{n}\sum_{i=1}^{n} x_i
+    \end{align*}
+    \item \underline{Varianza:}
+    \begin{align*}
+      V[X] = \frac{1}{n}\sum_{i=1}^{n} x_i - (\frac{1}{n}\sum_{i=1}^{n} x_i)^2
+    \end{align*}
+  \end{itemize}
+\end{definition}
+
+\iSubSection{Bernoulli}
+\begin{definition}[Bernoulli: $X\equiv Bern(p)$]
+  Una distribucion Bernoulli se caracteriza por tener solo dos posibles resultados, "exito" o "fracaso".
+  Con probabilidades $p$ y $(1-p)$ respectivamente.
+  \begin{itemize}
+    \item \underline{Funcion de masa:}
+    \begin{align*}
+      P(X = x) = p^x \cdot (1-p)^{1-x}
+      \text{ donde $X$} =
+      \begin{cases}
+        1 \text{ si obtenemos un "exito"}\\
+        0 \text{ si obtenemos un "fracaso"}
+      \end{cases}
+    \end{align*}
+    \item \underline{Esperanza:}
+    \begin{align*}
+      E[X] = p
+    \end{align*}
+    \item \underline{Varianza:}
+    \begin{align*}
+      V[X] = p \cdot (1-p)
+    \end{align*}
+  \end{itemize}
+\end{definition}
+
+\newpage
+\iSubSection{Binomial}
+\begin{definition}[Binomial: $\mathcal{B}(n,p)$]
+  Se genera por la repeticion de n pruebas de Bernoulli independientes. En esta distribucion
+  X="numero de exitos obtenidos en las n pruebas de Bernoulli".\\
+  En este caso $x_i$ vale "1" si obtenemos "exito" en la i-esima prueba  y vale "0" en el caso contrario.
+  \begin{itemize}
+    \item \underline{Funcion de masa:}
+    \begin{align*}
+      P(X = x) = \binom{n}{x} \cdot p^x \cdot (1-p)^{1-xs}
+    \end{align*}
+    \item \underline{Esperanza:}
+    \begin{align*}
+      E[X] = n \cdot p
+    \end{align*}
+    \item \underline{Varianza:}
+    \begin{align*}
+      V[X] = n \cdot (1-p) \cdot p 
+    \end{align*}
+  \end{itemize}
+\end{definition}
+
+
+\iSubSection{Poisson}
+\begin{definition}[Poisson: $\mathbb{P}(\lambda)$]
+  Expresa la probabilidad de que ocurran un numero de $X$ sucesos en un tiempo fijo, ocurren con
+  una tasa media conocida ($\lambda$) y son independientes del tiempo transcurrido desde el ultimo suceso.\\
+  Se aplican a eventos con probabilidad muy baja de ocurrir, pues esta distribucion se aplica sobre un intervalo
+  continuo numerable.
+  \begin{itemize}
+    \item \underline{Funcion de masa:}
+    \begin{align*}
+      P(X = x) = \frac{e^\lambda \cdot \lambda^x}{x!} \text{ con } x=0,1,\cdots
+    \end{align*}
+    \item \underline{Esperanza:}
+    \begin{align*}
+      E[X] = \lambda
+    \end{align*}
+    \item \underline{Varianza:}
+    \begin{align*}
+      V[X] = \lambda
+    \end{align*}
+  \end{itemize}
+\end{definition}
+
+\begin{concept}{Propiedad (Infinitamente Divisible)}
+  Si $X_i \equiv \mathbb{P}(\lambda_i)$ son independientes, entonces la v.a. :
+  \begin{align*}
+    X = \sum_{i}X_i \equiv \mathbb{P}(\sum_{i} \lambda_i)
+  \end{align*}
+\end{concept}
+
+\iSubSection{Hipergeometrica}
+\begin{definition}[Hipergeometrica: $\mathcal{H}(r_1,r,n)$]
+  Consideramos una poblacion de r objetos los cuales $r_1$ son de un tipo y $r_2=r-r_1$ son de otro.\\
+  Extraemos de esta poblacion un subconjunto de n objetos al azar, sin reposicion y sin considerar el orden
+  de extraccion.
+  \begin{itemize}
+    \item \underline{Funcion de masa:}
+    \begin{align*}
+      P(X = X) = \frac{\binom{r_1}{x} \cdot \binom{r-r_1}{n-x}}{\binom{r}{n}} 
+    \end{align*}
+    \item \underline{Esperanza:}
+    \begin{align*}
+      E[X] = \frac{n \cdot r_1}{r}
+    \end{align*}
+    \item \underline{Varianza:}
+    \begin{align*}
+      V[X] = \frac{r_1 \cdot n \cdot (r-r_1) \cdot (r-n)}{r^2 \cdot (r-1)}
+    \end{align*}
+  \end{itemize}
+\end{definition}
+
+\newpage
+\iSubSection{Geometrica}
+\begin{definition}[Geometrica: $\mathcal{G}(p)$]
+  Consiste en repetir una serie de experimentos Bernoulli hasta obtener el primer "exito".\\
+  Si  X toma el valor k, entonces tenemos $k-1$ fracasos y $1$ exito.
+  \begin{itemize}
+    \item \underline{Funcion de masa:}
+    \begin{align*}
+      P(X = x) = (1-p)^{k-1}\cdot p \text{ con } k=1,2,3,\cdots
+    \end{align*}
+    \item \underline{Esperanza:}
+    \begin{align*}
+      E[X] = \frac{1}{p}
+    \end{align*}
+    \item \underline{Varianza:}
+    \begin{align*}
+      V[X] = \frac{(1-p)}{p^2}
+    \end{align*}
+  \end{itemize}
+\end{definition}
+
+
+\iSubSection{Binomial Negativa}
+\begin{definition}[Binomial Negativa: $\mathcal{BN}(n,p)$]
+  Supongamos que tenemos una sucesion un experimento de Bernoulli independientes.
+  Consideramos el evento donde realizamos k experimentos hasta obtener r "exitos".\\
+  Toda secuencia de experimentos de ese evento tiene la misma probabilidad de aparecer y
+  es de la forma $EF\cdots E$ (siempre hay un exito en la ultima posicion).\\
+  Por lo tanto la cantidad se secuencias posibles es la forma de acomodar los $r-1$ exitos
+  en los $k-1$ lugares restantes.
+  \begin{itemize}
+    \item \underline{Funcion de masa:}
+    \begin{align*}
+      P(X = k) = \binom{k-1}{r-1} \cdot (1-p)^{k-r} \cdot p^r \text{ con } k=r,(r+1),(r+2),\cdots
+    \end{align*}
+    \item \underline{Esperanza:}
+    \begin{align*}
+      E[X] = \frac{r}{p}
+    \end{align*}
+    \item \underline{Varianza:}
+    \begin{align*}
+      V[X] = r\cdot \frac{(1-p)}{p^2}
+    \end{align*}
+  \end{itemize}
+\end{definition}
+
 \end{document}
-
-
